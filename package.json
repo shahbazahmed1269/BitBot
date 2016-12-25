@@ -1,0 +1,17 @@
+{
+  "name": "bitcoin_bot",
+  "version": "1.0.0",
+  "description": "Simple node.js app to fetch bitcoin current buy/sell rates in INR",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "NODE.JS"
+  ],
+  "author": "Shahbaz Ahmed",
+  "license": "ISC",
+  "dependencies": {
+    "botly": "^1.3.4"
+  }
+}

@@ -4,22 +4,6 @@ const Botly = require("botly");
 const buyEndPoint = "https://www.unocoin.com/trade?buy"
 const sellEndPoint = "https://www.unocoin.com/trade?sell"
 
-var getBitcoinBuyRate = function() {
-  getRate(buyEndPoint, function (err, rate) {
-    if (err == null) {
-      return rate;
-    }
-  });
-}
-
-var getBitcoinSellRate = function() {
-  getRate(sellEndPoint, function (err, rate) {
-    if (err == null) {
-      console.log("BitCoint sell rate: Rs." + rate);
-    }
-  });
-}
-
 var getRate = function (endPoint, callback) {
   unirest.get(endPoint).end(function (response) {
   callback(null, parseInt(response.body));

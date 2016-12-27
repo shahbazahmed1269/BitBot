@@ -3,6 +3,7 @@ const express = require("express");
 const Botly = require("botly");
 const buyEndPoint = "https://www.unocoin.com/trade?buy"
 const sellEndPoint = "https://www.unocoin.com/trade?sell"
+const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
 
 var getRate = function (endPoint, callback) {
   unirest.get(endPoint).end(function (response) {
@@ -30,6 +31,18 @@ app.get("/sell", function (req, res) {
       res.status(500).send('Something went wrong!');
     }
   })
+});
+
+// Facebook messenger webhook verification
+app.get('/webhook', function(req, res) {
+  if (req.query['hub.mode'] === 'subscribe' &&
+      req.query['hub.verify_token'] === VERIFY_TOKEN) {
+    console.log("Validating webhook");
+    res.status(200).send(req.query['hub.challenge']);
+  } else {
+    console.error("Failed validation. Make sure the validation tokens match.");
+    res.sendStatus(403);
+  }
 });
 
 

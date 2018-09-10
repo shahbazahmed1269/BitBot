@@ -1,4 +1,4 @@
-FROM node:argon
+FROM node:8.11.4-alpine
 
 # Create app directory
 RUN mkdir -p /usr/src/app
@@ -7,11 +7,9 @@ WORKDIR /usr/src/app
 # Install app dependencies
 COPY package.json /usr/src/app/
 RUN npm install
-RUN npm install unirest
-RUN npm install express
 
 # Bundle app source
 COPY . /usr/src/app
 
-EXPOSE 8080
+EXPOSE 80
 CMD [ "npm", "start" ]
